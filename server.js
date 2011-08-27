@@ -16,4 +16,13 @@ app.get('/', function(req, res){
 app.listen(parseInt(process.env.PORT) || 7777);
 
 
+var io = require('socket.io').listen(app);
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
 console.log('Listening on ' + app.address().port);

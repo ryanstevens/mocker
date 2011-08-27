@@ -1,13 +1,20 @@
 !!! 5
 html(lang="en")
     head
-        title BrowServer
+        title Mocker
         script(src="https://www.google.com/jsapi?key=ABQIAAAAawmq4aHfbGTpFeCsHtOkWBQsQd0vIpKFCtufn2SIqWjCv8cOVxQ_kgsyr8jKORJb1U8IsMaowj4EYA", type="text/javascript")
         script(src="/js/lib/jquery-1.6.1.js", type="application/javascript")
         script(src="/js/lib/mustache.js", type="application/javascript")
         script(src="/js/lib/underscore.js", type="application/javascript")
         script(src="/js/lib/backbone.js", type="application/javascript")
+        script(src="/js/client/browserver.js", type="application/javascript")
         script(src="/socket.io/socket.io.js", type="application/javascript")
-      link(rel='stylesheet', href='/css/styles.css')
+        link(rel='stylesheet', href='/css/styles.css')
+    
+        link(rel="stylesheet", href="/css/code-mirror/codemirror.css")
+        script(src="/js/lib/code-mirror/codemirror.js")
+        script(src="/js/lib/code-mirror/javascript.js")
+        link(rel="stylesheet", href="/css/code-mirror/default.css")
+
     body
-        div#wrapper!= body
+        != body
