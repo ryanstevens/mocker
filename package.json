@@ -1,0 +1,16 @@
+{
+  "author": "Ryan Stevens",
+  "name": "assasin",
+  "description": "Find Your Target, Plant a land mine",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "~v0.4.9"
+  },
+  "dependencies": {
+    "nko": "~0.1.1"
+  },
+  "devDependencies": {}
+}
