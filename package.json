@@ -10,7 +10,13 @@
     "node": "~v0.4.9"
   },
   "dependencies": {
-    "nko": "~0.1.1"
+    "nko": "~0.1.1",
+    "express" : "2.3.10",
+    "socket.io" : "0.7.9",
+    "underscore": "= 1.1.7",
+    "backbone": "= 0.5.1", 
+    "jade" : "= 0.13.0",
+    "v8-profiler" : "= 0.0.3"
   },
   "devDependencies": {}
 }
