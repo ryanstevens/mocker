@@ -4,7 +4,23 @@
     h2 a web server in the client
 .content
     div.code-block
-        textarea(value='function foo={}')
+        textarea
+            /***
+            *This default function is where 
+            *all requests come to.  It is 
+            *up to the programmer to 
+            *route request, write to the response 
+            *stream and end the response. 
+            *
+            *@param request contains headers and URL
+            *@param response emits write, end
+            */ 
+            function clientServer(request, response) {
+            
+                response.write('hello world');
+                response.end();
+
+            }
 
 script(type='text/javascript')
     init();
