@@ -7,12 +7,13 @@
         render : function() {
 
             if (!this.editor) {
-                this.editor = CodeMirror(this.el[0], {
-                    value : this.model.getCode(),
+                this.el[0].value = '';
+                this.editor = CodeMirror.fromTextArea(this.el[0], {//this.el[0], {
                     lineNumbers: true,
                     matchBrackets: true
                 });
             }
+            this.editor.setValue(this.model.get('src'));
         }
     });
 
@@ -26,8 +27,8 @@ mok.createNewScriptlet = function(src) {
 
     var view = new mok.views.ScriptletView({
         model : scriptlet,
-        el : $('.code-block') 
-    });
+        el :$('.code-block textarea')
+   });
 
     view.render();
 

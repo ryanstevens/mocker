@@ -80,7 +80,6 @@ body {
 }
 
 .code-block textarea {
-    display: none;
     -webkit-appearance: textarea;
     background-color: white;
     border: 1px solid;
