@@ -1,5 +1,13 @@
 
 (function(exports) {
+    var execer = function(src) {
+        try {
+            eval(src);
+        } catch(e) {
+
+        }
+
+    };
     exports.Scriptlet = Backbone.Model.extend( {
         
         initialize : function() {
@@ -11,19 +19,18 @@
         },
         loadNS : function() {
             
-            var srcipt = ['(function(exports) { ',
+            var file = this.get('fileName').replace('.', '_').replace('_', '');
+            execer("mok.scriptlets['"+file+"']={}");
+            
+            var script = [
+                    '(function(exports) { ',
                     this.getCode(),
-                    ' })(mok.scriptlets)'];
-            try {
-                eval('('+srcipt.join('\n')+')');
-            }
-            catch(e) {
-                this.trigger('evalError', e);
-            }
+                    " })(mok.scriptlets['"+file+"'])"];
+            execer(script.join('\n'));
 
         }
 
-    }); 
+    });
 
 
     exports.FilesCollection = Backbone.Collection.extend({

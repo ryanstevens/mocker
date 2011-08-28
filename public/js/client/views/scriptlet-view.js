@@ -2,7 +2,7 @@
 (function(exports) {
 
     /***
-    *
+    *This should only be instantiated once as a singleton
     */
     exports.EditorView = Backbone.View.extend({
         initialize : function() {
@@ -60,6 +60,17 @@
         },
 
         clicked : function() {
+            if (this.editing) return;
+            if (this.active) {
+                this.editing = true;
+                $(this.el).html('<input class="rename" value="'+this.model.get('fileName')+'" />');
+                var field = this.el.children()[0];
+                $(field).bind('blur', function() {
+                    this.editing = false;                    
+                    this.model.set({'fileName': field.value});
+                }.bind(this));
+                return;
+            }            
             this.toggleActive();
             this.trigger('updateActive', this); 
         },
@@ -67,6 +78,10 @@
         toggleActive : function() {
             
             this.el[ ((this.active) ? 'removeClass' : 'addClass' ) ]('active');
+            if (this.editing) {
+                this.render();
+                this.editing = false;
+            }
             this.active = !this.active;
         }       
     });
@@ -84,7 +99,16 @@
         },
 
         addNew : function() {
-            this.model.add(new mok.models.Scriptlet({fileName: 'new', src: ''}));
+            
+            var name = 'new.js';
+            if ( this.model.filter(function(script) {
+                    return (script.get('fileName') === name);
+                }).length>0) {
+                alert('please rename new.js');
+                return;
+            }
+            
+            this.model.add(new mok.models.Scriptlet({fileName: name, src: ''}));
         },
 
         addModel : function(newModel) {
@@ -98,7 +122,7 @@
         updateActive : function(newActive) {
             this.activeView.toggleActive();
             //copy values out of editor, then put values into from new view
-            this.activeView.model.set(mok.editor.saveModel());
+            this.activeView.model.set({src : mok.editor.saveModel().src});
             this.activeView = newActive;
             mok.activeScriptlet.set(this.activeView.model.toJSON());
         }

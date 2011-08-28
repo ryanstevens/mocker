@@ -24,6 +24,9 @@ mok.Responder = function(request) {
     };
 };
 
+function require(script) {
+    return mok.scriptlets[script.replace('.', '_').replace('_', '')];
+}
 
 function init() {
     
@@ -41,7 +44,7 @@ function init() {
     mok.socket.on('fetch', function(request) {
         console.log(request);
         
-        mok.scriptlets.handleResponse(request, new mok.Responder(request));
+        require('server.js').handleResponse(request, new mok.Responder(request));
         
     });
 
