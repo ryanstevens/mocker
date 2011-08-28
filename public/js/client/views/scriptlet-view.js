@@ -136,7 +136,8 @@
 
         var editor = new mok.views.EditorView({
             model : mok.activeScriptlet ,
-            el : $('.code-block')
+            el : $('.code-block'),
+            lines : 50
         });
         editor.setEditor(textArea);
         editor.render();

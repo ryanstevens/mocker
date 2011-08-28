@@ -29,8 +29,9 @@
                 *@param request contains headers and URL
                 *@param response emits write, end
                 */ 
-                var routes = require('routes.js');
-                if (routes) routes = routes.routes;
+
+                var routes = require('routes.js').routes;
+
                 exports.handleResponse = function(request, response) {
 
                     routes.get('/home/', function(){
@@ -48,6 +49,7 @@
                 }
         div.hiddenBlocks(style="display:none")
             textarea.routes(style="display:none")
+            
                 exports.routes = {
                     routes : {},
                     get : function(route, callback) {
