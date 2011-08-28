@@ -1,6 +1,6 @@
 
 (function(exports) {
-    exports['Scriptlet'] = Backbone.Model.extend( {
+    exports.Scriptlet = Backbone.Model.extend( {
         
         initialize : function() {
             this.bind('change', this.loadNS.bind(this));
@@ -19,4 +19,11 @@
         }
 
     }); 
+
+
+    exports.FilesCollection = Backbone.Collection.extend({
+        model : exports.Scriptlet
+    });
+
+
 })(mok.models || exports);

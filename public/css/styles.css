@@ -38,9 +38,10 @@ body {
     top:0px;
     font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
     font-size: 14px;
-    float: right;
+    float:right;
+    width:100%;
     height: 1px;
-    margin: 0 100px 0 0;
+    margin: 10px 100px 0 0;
 }
 
 .header .links ul {
@@ -48,12 +49,31 @@ body {
     margin:0;
 }
 
+.header .links .app {
+    float:left;
+    margin-left:300px;
+}
+
+
+.header .links .system {
+    float:right;
+}
+
+
+
 .header .links ul li {
-    float: right;
-    font-size: 14px;
-    list-style-type: none;
-    margin: 11px 0 0 15px;
+    display : inline-block;
     cursor:pointer;
+    float:right;
+    margin:0 0 5px 5px;
+    padding:4px;
+    background-color:#C0C0C0;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: black;
+    text-shadow: none;
+    font-size: 11px;
+    font-weight:normal;
 }
 
 .header .links .vote {
@@ -65,7 +85,9 @@ body {
 
 .header .status {
     
-    float:right;
+    position:absolute;
+    top:40px;
+    right:30px;
     display:inline-block;
     padding:8px;
     background-color:red;
@@ -97,17 +119,26 @@ body {
 .code-block .code-container {
     clear:both;
     background-color:#C0C0C0;
+    margin-top:5px;
 }
 
-.code-block .code-controls div {
+#files ul{
+    list-style: none;
+    margin:0px
+}
+
+#files ul li {
     display : inline-block;
-    cursor:pointer;
-    float:right;
-    margin:0 0 5px 5px;
-    padding:4px;
-    background-color:#C0C0C0;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    background-color:#737CA1;
+    padding:4px;
+    font-size:9pt;
+    margin-left:4px;
+    cursor:pointer;
+}
+
+#files ul li.active {
+    background-color:	#C0C0C0;
 }
 
 .code-block textarea {

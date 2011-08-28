@@ -8,26 +8,30 @@ var mok = {
 };
 
 
-mok.Responder = function(reqId) {
+mok.Responder = function(request) {
     
     _.extend(this, Backbone.Events);
     
     this.end = function() {
-        mok.socket.emit('res.end.'+reqId);
+        mok.socket.emit('res.end.'+request.reqId);
         this.trigger('end');
     };
 
     this.write = function(data) {
         
-        mok.socket.emit('res.write.'+reqId, {data : data});
+        mok.socket.emit('res.write.'+request.reqId, {data : data});
 
     };
 };
 
 
 function init() {
+    
+    mok.controls = new mok.views.Controls({
+        el : $('.links')
+    });
 
-    mok.createNewScriptlet();
+    mok.views.initScriptlet();
     
     mok.socket = io.connect('/');
     mok.socket.on('challenge', function() {
@@ -37,14 +41,10 @@ function init() {
     mok.socket.on('fetch', function(request) {
         console.log(request);
         
-        var response = new mok.Responder(request.reqId);
-        mok.scriptlets.handleResponse(request, response);
+        mok.scriptlets.handleResponse(request, new mok.Responder(request));
         
     });
 
-    var controls = new mok.views.Controls({
-        el : $('.links')
-    });
 
     mok.status = new mok.models.Status({status : '', gen : 0});
     var statusView = new mok.views.StatusView({

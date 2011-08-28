@@ -1,18 +1,22 @@
 
 .header 
     div.links
-        ul
+        ul.app
+            li.hit View
+            li.save Save            
+        ul.system
             li.vote 
                 iframe(src="http://nodeknockout.com/iframe/last-minute-submit", frameborder="0", scrolling="no", allowtransparency="true", width="115", height="25")
             li.about About
-            li.hit Hit Server
     h1 Mocker 
     h2 a web server in the client
     div.status saving
 .content
     div.code-block
-        div.code-controls
-            div.save Save
+        div#files
+            ul
+                li.file.active server.js
+                li.file new file +              
         div.code-container
             textarea
                 /***
@@ -32,8 +36,8 @@
 
                 }
 
+
 script(type='text/javascript')
     init();
-
 
 
