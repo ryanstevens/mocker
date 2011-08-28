@@ -1,3 +1,4 @@
+
 //default namespace
 var mok = {
     who : uuid(),
@@ -26,7 +27,7 @@ mok.Responder = function(reqId) {
 
 function init() {
 
-    mok.createNewScriptlet($('.code-block textarea')[0].value);
+    mok.createNewScriptlet();
     
     mok.socket = io.connect('/');
     mok.socket.on('challenge', function() {

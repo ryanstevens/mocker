@@ -75,8 +75,23 @@ body {
 }
 
 .code-block {
-    background-color:#C0C0C0;
     width:800px;
+}
+
+.code-block .code-container {
+    clear:both;
+    background-color:#C0C0C0;
+}
+
+.code-block .code-controls div {
+    display : inline-block;
+    cursor:pointer;
+    float:right;
+    margin:0 0 5px 5px;
+    padding:4px;
+    background-color:#C0C0C0;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .code-block textarea {
