@@ -26,7 +26,9 @@ mok.Responder = function(request) {
 };
 
 function require(script) {
-    return mok.scriptlets[script.replace('.', '_').replace('_', '')];
+    var obj = mok.scriptlets[script.replace('.', '_').replace('_', '')];
+    if (!obj) obj = {};
+    return obj;
 }
 
 function init() {
