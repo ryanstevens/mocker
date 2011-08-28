@@ -1,5 +1,11 @@
 
 .header 
+    div.links
+        ul
+            li.vote 
+                iframe(src="http://nodeknockout.com/iframe/last-minute-submit", frameborder="0", scrolling="no", allowtransparency="true", width="115", height="25")
+            li.about About
+            li.hit Hit Server
     h1 Mocker 
     h2 a web server in the client
 .content
@@ -15,7 +21,7 @@
             *@param request contains headers and URL
             *@param response emits write, end
             */ 
-            function clientServer(request, response) {
+            exports.handleResponse = function(request, response) {
             
                 response.write('hello world');
                 response.end();

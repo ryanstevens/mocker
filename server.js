@@ -14,7 +14,7 @@ app.get('/', function(req, res){
     res.render('index.jade');
 });
 
-app.get('/server/:uuid/*', function(req, res) {
+app.get('/server/:uuid/home*', function(req, res) {
     console.log(req.params.uuid);
     mocker.handleResponse(req, res, req.params.uuid);
 });
