@@ -45,5 +45,11 @@ function init() {
     var controls = new mok.views.Controls({
         el : $('.links')
     });
-}
+
+    mok.status = new mok.models.Status({status : '', gen : 0});
+    var statusView = new mok.views.StatusView({
+        el : $('.header .status'),
+        model : mok.status
+    });
+}   
 

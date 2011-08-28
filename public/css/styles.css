@@ -63,6 +63,22 @@ body {
     background: grey;
 }   
 
+.header .status {
+    
+    float:right;
+    display:inline-block;
+    padding:8px;
+    background-color:red;
+    color:black;
+    font-weight:bold;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-shadow: black 0 0 0;
+    margin-right:100px;
+    display:none;
+
+}
+
 .error {
     margin:20px;
     font-size:25pt;

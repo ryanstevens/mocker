@@ -12,6 +12,7 @@
         },
 
         hit : function () {
+            mok.status.setStatus('Opening URL');
             var url = '/server/'+mok.who+'/home/';
             window.open(url,'_newtab');       
         }    

@@ -21,6 +21,7 @@
         },
         
         save : function() {
+            mok.status.setStatus('Saving');
             this.model.set({src : this.editor.getValue()});
         }
     });
