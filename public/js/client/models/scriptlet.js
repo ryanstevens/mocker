@@ -1,13 +1,9 @@
 
 (function(exports) {
     var execer = function(src) {
-        try {
-            eval(src);
-        } catch(e) {
-
-        }
-
+        eval('('+src+')');
     };
+
     exports.Scriptlet = Backbone.Model.extend( {
         
         initialize : function() {
@@ -20,14 +16,27 @@
         loadNS : function() {
             
             var file = this.get('fileName').replace('.', '_').replace('_', '');
-            execer("mok.scriptlets['"+file+"']={}");
+       
+            var runInNS = function(code, namespace) {
+                try {
+                  execer(namespace+"={}");
             
-            var script = [
+                  var script = [
                     '(function(exports) { ',
-                    this.getCode(),
-                    " })(mok.scriptlets['"+file+"'])"];
-            execer(script.join('\n'));
-
+                    code,
+                    " })("+namespace+")"];
+                  execer(script.join('\n'));
+                }
+                catch(e) {
+                  alert("There is a problem with your code\n"+e.message);
+                  return false;  
+                }
+                return true;
+            };  
+        
+            if (runInNS(this.getCode(), "mok.sandbox"))
+                runInNS(this.getCode(), "mok.scriptlets['"+file+"']");
+           
         }
 
     });

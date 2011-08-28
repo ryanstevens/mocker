@@ -4,7 +4,8 @@ var mok = {
     who : uuid(),
     models : {},
     views : {},
-    scriptlets : {}
+    scriptlets : {},
+    sandbox : {}
 };
 
 
@@ -44,7 +45,14 @@ function init() {
     mok.socket.on('fetch', function(request) {
         console.log(request);
         
-        require('server.js').handleResponse(request, new mok.Responder(request));
+        var responder = new mok.Responder(request);
+        try {
+            require('server.js').handleResponse(request,responder);
+        }
+        catch(e) {
+            responder.write('error-- '+e.message);
+            responder.end();
+        }
         
     });
 
