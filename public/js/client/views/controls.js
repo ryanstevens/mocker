@@ -9,7 +9,7 @@
         },
 
         about : function() {
-    
+            alert('This was build for the node knock out.  Click "View It" to see your browser serve a response stream');
         },
 
         hit : function () {

@@ -13,6 +13,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
     res.render('index.jade');
 });
+app.get('/about', function(req, res){
+    res.render('about.jade');
+});
 
 app.get('/server/:uuid/home*', function(req, res) {
     console.log(req.params.uuid);
