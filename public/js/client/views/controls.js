@@ -14,7 +14,7 @@
 
         hit : function () {
             //first, save your work
-            mok.scriptletView.save();
+            mok.editor.saveModel();
 
             mok.status.setStatus('Opening URL');
             var url = '/server/'+mok.who+'/home/';

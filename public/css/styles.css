@@ -76,6 +76,11 @@ body {
     font-weight:normal;
 }
 
+.bang {
+    color:red;
+    font-weight:bold;
+}
+
 .header .links .vote {
     top: -6px;
     height:25px;

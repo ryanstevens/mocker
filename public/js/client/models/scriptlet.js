@@ -14,7 +14,12 @@
             var srcipt = ['(function(exports) { ',
                     this.getCode(),
                     ' })(mok.scriptlets)'];
-            eval('('+srcipt.join('\n')+')');
+            try {
+                eval('('+srcipt.join('\n')+')');
+            }
+            catch(e) {
+                this.trigger('evalError', e);
+            }
 
         }
 
