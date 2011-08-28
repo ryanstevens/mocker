@@ -29,7 +29,8 @@
         },
        
         saveModel : function() {
-            mok.status.setStatus('Saving');
+            if (mok.status)
+                mok.status.setStatus('Saving');
             this.model.set({src : this.editor.getValue()});
             return this.model.toJSON();
         },
@@ -91,11 +92,7 @@
         initialize : function() {
             mok.editor.bind('newFile', this.addNew.bind(this));
             this.model.bind('add', this.addModel.bind(this));
-            this.activeView = new mok.views.FileView({el : $('.files'), 
-                model : this.model.at(0)
-            });
-            this.activeView.bind('updateActive', this.updateActive.bind(this));
-            this.activeView.render();
+            this.addModel(this.model.at(0));
         },
 
         addNew : function() {
@@ -120,9 +117,11 @@
         },
 
         updateActive : function(newActive) {
-            this.activeView.toggleActive();
-            //copy values out of editor, then put values into from new view
-            this.activeView.model.set({src : mok.editor.saveModel().src});
+            if (this.activeView) {
+                this.activeView.toggleActive();
+                //copy values out of editor, then put values into from new view
+                this.activeView.model.set({src : mok.editor.saveModel().src});
+            }
             this.activeView = newActive;
             mok.activeScriptlet.set(this.activeView.model.toJSON());
         }
@@ -147,7 +146,12 @@
         var filesView = new mok.views.FilesCollectionView({
             model : (new mok.models.FilesCollection([serverScriptlet]))
         });
+        var serverView = filesView.activeView;
         
+        filesView.addModel( new mok.models.Scriptlet( {fileName : 'routes.js', src : $('.routes')[0].value}));
+        //reset server.js as active.... kinda a hack, but its sunday at 3:15
+        serverView.toggleActive();
+        filesView.updateActive( serverView );
     };
 
 })(mok.views || exports);

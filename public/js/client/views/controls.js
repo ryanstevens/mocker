@@ -15,8 +15,9 @@
         hit : function () {
             //first, save your work
             mok.editor.saveModel();
-
-            mok.status.setStatus('Opening URL');
+            
+            if (mok.status)
+                mok.status.setStatus('Opening URL');
             var url = '/server/'+mok.who+'/home/';
             window.open(url,'_newtab');       
         },

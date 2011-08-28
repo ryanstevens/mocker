@@ -29,14 +29,39 @@
                 *@param request contains headers and URL
                 *@param response emits write, end
                 */ 
+                var routes = require('routes.js');
+                if (routes) routes = routes.routes;
                 exports.handleResponse = function(request, response) {
-            
-                    response.write('hello world');
-                    response.end();
+
+                    routes.get('/home/', function(){
+                        response.write('hello world');
+                    });
+
+                    routes.get('/ryan', function(){
+                        response.write('my name is ryan');
+                    });
+
+                    routes.serve(request, response, function() {
+                        response.end();
+                    });
 
                 }
-
-
+        div.hiddenBlocks(style="display:none")
+            textarea.routes(style="display:none")
+                exports.routes = {
+                    routes : {},
+                    get : function(route, callback) {
+                        this.routes[route] = callback;
+                    },
+                    serve: function(request, response, callback) {
+                        _.each(this.routes, function(value, route) {
+                            if (request.path.endsWith(route)) 
+                                this.routes[route]();
+                        }.bind(this));
+                        if (callback) callback();
+                    }
+                };
+                  
 script(type='text/javascript')
     init();
 
