@@ -1,5 +1,4 @@
 var http = require('http') 
-    , nko = require('nko')('zYF4TnFYVYG9ggWG')
     , express = require('express')
     , mocker = require('./lib/Mocker.js');
 
